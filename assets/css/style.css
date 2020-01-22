@@ -1,0 +1,42 @@
+/* Imported fonts
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Bowlby One SC', cursive;
+*/
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-image: url(../images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 86%;
+  height: auto;
+  background-color: lightskyblue;
+  margin: 0px auto;
+  text-align: center;
+}
+
+#header {
+  color: #494949;
+  font-size: 3rem;
+  font-family: "Bowlby One SC", cursive;
+}
+
+#start {
+  background-color: gray;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 30px;
+  border: none;
+  width: 50%;
+  margin-bottom: 50px;
+}
+
+#start:hover {
+  background: rgba(78, 97, 100, 0.5);
+}
