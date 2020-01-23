@@ -40,3 +40,24 @@ body {
 #start:hover {
   background: rgba(78, 97, 100, 0.5);
 }
+
+#time-remaining {
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+#question-container h2 {
+  margin: 0px auto;
+  width: 75%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#question-container h2:hover {
+  background: rgba(29, 58, 163, 0.5);
+  border: 2px solid black;
+}
+
+#question-container {
+  padding-bottom: 20px;
+}

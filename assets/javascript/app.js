@@ -40,16 +40,151 @@ $(document).ready(function() {
     "Exabyte",
     "USB 3.0 can allow more power to the port"
   ];
+  let time = 30;
+  const remaining = "Time remaining: ";
+  let interval;
+  let questionPicker = 0;
+  let correct = 0;
+  let incorrect = 0;
+  let timesUpCounter = 0;
 
-  function startTimer() {}
+  function removeStart() {
+    $("#start").remove();
+  }
 
-  function correctAnswer() {}
+  function displayTimer() {
+    $("#question-container").prepend(
+      "<div id='time-remaining'>" + remaining + time + "</div>"
+    );
+  }
 
-  function incorrectAnswer() {}
+  function updateTimer() {
+    time--;
+    $("#time-remaining").text(remaining + time);
+    if (time < 1) {
+      timesUp();
+      time = 30;
+      clearInterval(interval);
+    }
+  }
 
-  function timesUp() {}
+  function updateQuestion() {
+    questionPicker++;
+    if (questionPicker > 4) {
+      gameOver();
+      questionPicker = 0;
+    }
+  }
+
+  function correctAnswerFunction() {
+    $("#questions-container").empty();
+    $("#questions-container").prepend("<h1>That is correct!</h2>");
+    $("#questions-container").append(
+      "The correct answer is: " + correctAnswer[questionPicker]
+    );
+    updateQuestion();
+  }
+
+  function incorrectAnswer() {
+    $("#questions-container").empty();
+    $("#questions-container").prepend("<h1>Nope, not at all...</h2>");
+    $("#questions-container").append(
+      "The correct answer is: " + correctAnswer[questionPicker]
+    );
+    updateQuestion();
+  }
+
+  function timesUp() {
+    $("#questions-container").empty();
+    $("#questions-container").prepend("<h1>Times up</h2>");
+    $("#questions-container").append(
+      "The correct answer is: " + correctAnswer[questionPicker]
+    );
+    updateQuestion();
+  }
 
   function gameOver() {}
 
-  function loadQuestion() {}
+  function loadQuestion() {
+    // Time remaining:
+    // Question
+    // 4 answers randomized (on hover give it a color)
+    $("#questions-container").empty();
+    $("#question-container").append(
+      "<h1 id='question'>" + questions[questionPicker] + "</h1>"
+    );
+
+    let randomNumber = Math.floor(Math.random() * 3);
+
+    if (randomNumber === 0) {
+      $("#question-container").append(
+        "<h2 id='correctAnswer'>" + correctAnswer[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer1[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer2[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer3[questionPicker] + "</h2>"
+      );
+    } else if (randomNumber === 1) {
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer1[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='correctAnswer'>" + correctAnswer[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer2[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer3[questionPicker] + "</h2>"
+      );
+    } else if (randomNumber === 2) {
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer1[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer2[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='correctAnswer'>" + correctAnswer[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer3[questionPicker] + "</h2>"
+      );
+    } else {
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer1[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer2[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='incorrectAnswer'>" + incorrectAnswer3[questionPicker] + "</h2>"
+      );
+      $("#question-container").append(
+        "<h2 id='correctAnswer'>" + correctAnswer[questionPicker] + "</h2>"
+      );
+    }
+  }
+
+  $("#start").click(function() {
+    removeStart();
+    displayTimer();
+    interval = setInterval(updateTimer, 1000);
+    loadQuestion();
+  });
+
+  $("#incorrectAnswer").click(function() {
+    console.log("fuijsehf");
+    incorrectAnswer();
+  });
+
+  $("#correctAnswer").click(function() {
+    console.log("fuijsehf");
+    correctAnswerFunction();
+  });
 });
