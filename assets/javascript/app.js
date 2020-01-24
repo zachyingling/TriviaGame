@@ -1,6 +1,3 @@
-// Need 5 linked arrays. One for questions, one for correct answers. and 3 for incorrect answers.
-// Functions needed: loadQuestion(), startTimer(), correctAnswer(), incorrectAnswer(), timesUp() gameOver();
-
 $(document).ready(function() {
   const questions = [
     "What does CPU stand for?",
@@ -54,6 +51,9 @@ $(document).ready(function() {
 
   function gameOver() {
     questionPicker = 0;
+    correct = 0;
+    incorrect = 0;
+    timesUpCounter = 0;
     $("#question-container").empty();
     $("#question-container").append("<h1>The game is over</h1>");
     $("#question-container").append(
@@ -66,6 +66,12 @@ $(document).ready(function() {
       "<h1>You got timed out " + timesUpCounter + " times.</h1>"
     );
     $("#question-container").append("<h2 id='start-over'>Start Over?</h2>");
+
+    $("#start-over").click(function() {
+      loadQuestion();
+      displayTimer();
+      interval = setInterval(updateTimer, 1000);
+    });
   }
 
   function displayTimer() {
@@ -102,9 +108,9 @@ $(document).ready(function() {
     $("#question-container").empty();
     $("#question-container").prepend("<h1>That is correct!</h2>");
     $("#question-container").append(
-      "<h2 id='correct-answer'>The correct answer is: " +
+      "<h1 id='correct-answer'>The correct answer is: " +
         correctAnswer[questionPicker] +
-        "</h2>"
+        "</h1>"
     );
     setTimeout(function() {
       updateQuestion();
@@ -118,9 +124,9 @@ $(document).ready(function() {
     $("#question-container").empty();
     $("#question-container").prepend("<h1>Nope, not at all...</h2>");
     $("#question-container").append(
-      "<h2 id='correct-answer'>The correct answer is: " +
+      "<h1 id='correct-answer'>The correct answer is: " +
         correctAnswer[questionPicker] +
-        "</h2>"
+        "</h1>"
     );
     setTimeout(function() {
       updateQuestion();
@@ -132,9 +138,9 @@ $(document).ready(function() {
     $("#question-container").empty();
     $("#question-container").prepend("<h1>You ruined it. Times up...</h2>");
     $("#question-container").append(
-      "<h2 id='correct-answer'>The correct answer is: " +
+      "<h1 id='correct-answer'>The correct answer is: " +
         correctAnswer[questionPicker] +
-        "</h2>"
+        "</h1>"
     );
     setTimeout(function() {
       updateQuestion();
