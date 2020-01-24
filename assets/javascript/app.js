@@ -50,10 +50,6 @@ $(document).ready(function() {
   }
 
   function gameOver() {
-    questionPicker = 0;
-    correct = 0;
-    incorrect = 0;
-    timesUpCounter = 0;
     $("#question-container").empty();
     $("#question-container").append("<h1>The game is over</h1>");
     $("#question-container").append(
@@ -68,6 +64,10 @@ $(document).ready(function() {
     $("#question-container").append("<h2 id='start-over'>Start Over?</h2>");
 
     $("#start-over").click(function() {
+      questionPicker = 0;
+      correct = 0;
+      incorrect = 0;
+      timesUpCounter = 0;
       loadQuestion();
       displayTimer();
       interval = setInterval(updateTimer, 1000);
@@ -157,95 +157,95 @@ $(document).ready(function() {
 
     if (randomNumber === 0) {
       $("#question-container").append(
-        "<h2 id='correct-answer-question'>" +
+        "<h2 class='correct-answer-question'>" +
           correctAnswer[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer1[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer2[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer3[questionPicker] +
           "</h2>"
       );
     } else if (randomNumber === 1) {
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer1[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='correct-answer-question'>" +
+        "<h2 class='correct-answer-question'>" +
           correctAnswer[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer2[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer3[questionPicker] +
           "</h2>"
       );
     } else if (randomNumber === 2) {
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer1[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer2[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='correct-answer-question'>" +
+        "<h2 class='correct-answer-question'>" +
           correctAnswer[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer3[questionPicker] +
           "</h2>"
       );
     } else {
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer1[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer2[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='incorrect-answer-question'>" +
+        "<h2 class='incorrect-answer-question'>" +
           incorrectAnswer3[questionPicker] +
           "</h2>"
       );
       $("#question-container").append(
-        "<h2 id='correct-answer-question'>" +
+        "<h2 class='correct-answer-question'>" +
           correctAnswer[questionPicker] +
           "</h2>"
       );
     }
 
-    $("#incorrect-answer-question").click(function() {
+    $(".incorrect-answer-question").click(function() {
       incorrectAnswer();
     });
 
-    $("#correct-answer-question").click(function() {
+    $(".correct-answer-question").click(function() {
       correctAnswerFunction();
     });
   }
